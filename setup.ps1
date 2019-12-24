@@ -1,5 +1,4 @@
 Rename-Computer -NewName Precision
-Set-ExecutionPolicy RemoteSigned
 Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 Install-Module PSWindowsUpdate
 Get-WindowsUpdate
