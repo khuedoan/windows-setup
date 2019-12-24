@@ -38,3 +38,4 @@ Get-AppxPackage *Microsoft.XboxSpeechToTextOverlay* | Remove-AppxPackage
 Get-AppxPackage *Microsoft.YourPhone* | Remove-AppxPackage
 Get-AppxPackage *Microsoft.ZuneMusic* | Remove-AppxPackage
 Get-AppxPackage *Microsoft.ZuneVideo* | Remove-AppxPackage
+C:\Windows\SysWOW64\OneDriveSetup.exe /uninstall
