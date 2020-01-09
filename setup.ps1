@@ -59,20 +59,15 @@ C:\Windows\SysWOW64\OneDriveSetup.exe /uninstall
 #| Install softwares |
 #+-------------------+
 
-cd ~\Downloads
-
 # Install 7-Zip
-(New-Object System.Net.WebClient).DownloadFile( "https://www.7-zip.org/a/7z1900-x64.exe", "7zip.exe")
-Start-Process -Wait .\7zip.exe /S
-Remove-Item .\7zip.exe
+(New-Object System.Net.WebClient).DownloadFile( "https://www.7-zip.org/a/7z1900-x64.exe", "$env:TEMP\zip.exe")
+Start-Process -Wait $env:TEMP\7zip.exe /S
 
 # Install Intel Extreme Tuning Utility
-(New-Object System.Net.WebClient).DownloadFile( "http://downloadmirror.intel.com/24075/eng/XTUSetup.exe", "xtu.exe")
-Start-Process -Wait .\xtu.exe /S
-Remove-Item .\xtu.exe
+(New-Object System.Net.WebClient).DownloadFile( "http://downloadmirror.intel.com/24075/eng/XTUSetup.exe", "$env:TEMP\xtu.exe")
+Start-Process -Wait $env:TEMP\xtu.exe /S
 
 # Install Steam
-(New-Object System.Net.WebClient).DownloadFile( "https://steamcdn-a.akamaihd.net/client/installer/SteamSetup.exe", "steam.exe")
-Start-Process -Wait .\steam.exe /S
-Remove-Item .\steam.exe
+(New-Object System.Net.WebClient).DownloadFile( "https://steamcdn-a.akamaihd.net/client/installer/SteamSetup.exe", "$env:TEMP\steam.exe")
+Start-Process -Wait $env:TEMP\steam.exe /S
 
