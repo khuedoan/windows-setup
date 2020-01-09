@@ -1,15 +1,25 @@
+#+----------+
+#| Settings |
+#+----------+
+
 # Change hostname
-Rename-Computer -NewName Precision
+Rename-Computer -NewName "Precision"
 
 # Change drive label
 Set-Volume -DriveLetter C -NewFileSystemLabel "Windows"
 
-# Update Windows
+#+----------------+
+#| Update Windows |
+#+----------------+
+
 Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 Install-Module PSWindowsUpdate
 Get-WindowsUpdate
 Install-WindowsUpdate
 
+#+---------+
+#| Debloat |
+#+---------+
 # Uninstall apps
 Get-AppxPackage *Microsoft.BingWeather* | Remove-AppxPackage
 Get-AppxPackage *Microsoft.DesktopAppInstaller* | Remove-AppxPackage
@@ -45,17 +55,24 @@ Get-AppxPackage *Microsoft.ZuneMusic* | Remove-AppxPackage
 Get-AppxPackage *Microsoft.ZuneVideo* | Remove-AppxPackage
 C:\Windows\SysWOW64\OneDriveSetup.exe /uninstall
 
-# Download softwares
+#+-------------------+
+#| Install softwares |
+#+-------------------+
+
 cd ~\Downloads
-Start-BitsTransfer "https://www.7-zip.org/a/7z1900-x64.exe"
-Start-BitsTransfer "https://downloadmirror.intel.com/24075/eng/XTUSetup.exe"
-Start-BitsTransfer "https://steamcdn-a.akamaihd.net/client/installer/SteamSetup.exe"
 
 # Install 7-Zip
-Start-Process -Wait .\7z1900-x64.exe /S
+(New-Object System.Net.WebClient).DownloadFile( "https://www.7-zip.org/a/7z1900-x64.exe", "7zip.exe")
+Start-Process -Wait .\7zip.exe /S
+Remove-Item .\7zip.exe
 
 # Install Intel Extreme Tuning Utility
-Start-Process -Wait .\XTUSetup.exe /S
+(New-Object System.Net.WebClient).DownloadFile( "http://downloadmirror.intel.com/24075/eng/XTUSetup.exe", "xtu.exe")
+Start-Process -Wait .\xtu.exe /S
+Remove-Item .\xtu.exe
 
 # Install Steam
-Start-Process -Wait .\SteamSetup.exe /S
+(New-Object System.Net.WebClient).DownloadFile( "https://steamcdn-a.akamaihd.net/client/installer/SteamSetup.exe", "steam.exe")
+Start-Process -Wait .\steam.exe /S
+Remove-Item .\steam.exe
+
