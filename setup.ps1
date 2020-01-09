@@ -1,6 +1,9 @@
 # Change hostname
 Rename-Computer -NewName Precision
 
+# Change drive label
+Set-Volume -DriveLetter C -NewFileSystemLabel "Windows"
+
 # Update Windows
 Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 Install-Module PSWindowsUpdate
