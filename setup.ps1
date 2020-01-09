@@ -38,3 +38,11 @@ Get-AppxPackage *Microsoft.YourPhone* | Remove-AppxPackage
 Get-AppxPackage *Microsoft.ZuneMusic* | Remove-AppxPackage
 Get-AppxPackage *Microsoft.ZuneVideo* | Remove-AppxPackage
 C:\Windows\SysWOW64\OneDriveSetup.exe /uninstall
+
+# Download softwares
+cd ~\Downloads
+Start-BitsTransfer "https://www.7-zip.org/a/7z1900-x64.exe"
+
+# Install 7-Zip
+Start-Process -Wait .\7z1900-x64.exe /S
+
