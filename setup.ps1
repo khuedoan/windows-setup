@@ -8,11 +8,13 @@ Rename-Computer -NewName "Precision"
 # Change drive label
 Set-Volume -DriveLetter C -NewFileSystemLabel "Windows"
 
+# Trust PSGallery repository
+Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+
 #+----------------+
 #| Update Windows |
 #+----------------+
 
-Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 Install-Module PSWindowsUpdate
 Get-WindowsUpdate
 Install-WindowsUpdate
@@ -20,7 +22,8 @@ Install-WindowsUpdate
 #+---------+
 #| Debloat |
 #+---------+
-# Uninstall apps
+
+# Uninstall default apps
 Get-AppxPackage *Microsoft.BingWeather* | Remove-AppxPackage
 Get-AppxPackage *Microsoft.DesktopAppInstaller* | Remove-AppxPackage
 Get-AppxPackage *Microsoft.GetHelp* | Remove-AppxPackage
@@ -63,11 +66,11 @@ C:\Windows\SysWOW64\OneDriveSetup.exe /uninstall
 (New-Object System.Net.WebClient).DownloadFile( "https://www.7-zip.org/a/7z1900-x64.exe", "$env:TEMP\zip.exe")
 Start-Process -Wait $env:TEMP\7zip.exe /S
 
-# Install Intel Extreme Tuning Utility
-(New-Object System.Net.WebClient).DownloadFile( "http://downloadmirror.intel.com/24075/eng/XTUSetup.exe", "$env:TEMP\xtu.exe")
-Start-Process -Wait $env:TEMP\xtu.exe /S
-
 # Install Steam
 (New-Object System.Net.WebClient).DownloadFile( "https://steamcdn-a.akamaihd.net/client/installer/SteamSetup.exe", "$env:TEMP\steam.exe")
 Start-Process -Wait $env:TEMP\steam.exe /S
+
+# Install Intel Extreme Tuning Utility
+(New-Object System.Net.WebClient).DownloadFile( "http://downloadmirror.intel.com/24075/eng/XTUSetup.exe", "$env:TEMP\xtu.exe")
+Start-Process -Wait $env:TEMP\xtu.exe /S
 
