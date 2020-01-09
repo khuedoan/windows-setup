@@ -42,7 +42,10 @@ C:\Windows\SysWOW64\OneDriveSetup.exe /uninstall
 # Download softwares
 cd ~\Downloads
 Start-BitsTransfer "https://www.7-zip.org/a/7z1900-x64.exe"
+Start-BitsTransfer "https://downloadmirror.intel.com/24075/eng/XTUSetup.exe"
 
 # Install 7-Zip
 Start-Process -Wait .\7z1900-x64.exe /S
 
+# Install Intel Extreme Tuning Utility
+Start-Process -Wait .\XTUSetup.exe /S
